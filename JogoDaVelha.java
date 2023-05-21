@@ -13,7 +13,6 @@ public class JogoDaVelha {
 		char jogador;
 		while (!vitoria(tabuleiro).equals("Vitoria X") || !vitoria(tabuleiro).equals("Vitoria O")
 				|| !vitoria(tabuleiro).equals("Empate!!")) {
-			System.out.println("á ã ê ó í ñ ");
 			if (cont != 9) {
 				System.out.println("|--1-2-3--|"); // exibe o tabuleiro
 				for (int i = 0; i < 3; i++) {
