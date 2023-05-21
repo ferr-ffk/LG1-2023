@@ -6,7 +6,7 @@ public class ContaPoupanca extends ContaBancaria {
 	@Override
 	public void transferir(ContaBancaria conta, float qtd) {
 		if(diasDesdeUltimaTransferencia >= 7) {
-			this.transferir(conta, qtd);
+			super(conta, qtd);
 		} else {
 			System.out.println("Não é possível transferir pois foram feitas muitas transferências na última semana");
 		}
