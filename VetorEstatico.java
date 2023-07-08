@@ -5,9 +5,11 @@ public class VetorEstatico<T> {
 	private int capacidade;
 	private T[] elementos;
 
-	@SuppressWarnings("unchecked")
 	public VetorEstatico(int capacidade) {
-		this.elementos = (T[]) new Object[++capacidade];
+		if(0 > capacidade) {
+			throw new RuntimeException("A capacidade do vetor não pode ser menor que zero!");
+		}
+		this.elementos = new Object[++capacidade];
 		this.tamanho = 0;
 		this.capacidade = capacidade;
 	}
@@ -24,11 +26,12 @@ public class VetorEstatico<T> {
 		return elementos[indice] == null ? true : false;
 	}
 
-	public void adicionar(T elemento) throws RuntimeException {
-		if (this.taVazio()) {
-			for (int i = 0; i < tamanho - 1; i++) {
-				if (this.temCelulaVazia(i)) {
-					elementos[i] = elemento;
+	public void adicionar(T elemento) {
+		if (!this.taCheio()) {
+			for(int i = 0; i < this.capacidade - 1; i++) {
+				if(temCelulaVazia(i)) {
+					this.adicionar(elemento, i);
+					this.tamanho++;
 					return;
 				}
 			}
@@ -56,6 +59,7 @@ public class VetorEstatico<T> {
 		for (int i = 0; i < this.tamanho - 1; i++) {
 			if (elementos[i].equals(elemento)) {
 				elementos[i] = null;
+				this.tamanho--;
 				return;
 			}
 		}
@@ -76,5 +80,9 @@ public class VetorEstatico<T> {
 
 	public int tamanho() {
 		return this.tamanho;
+	}
+	
+	public int capacidade() {
+		return this.capacidade;
 	}
 }
