@@ -3,7 +3,7 @@ package estruturasDeDados;
 public class VetorEstatico<T> {
 	private int tamanho;
 	private int capacidade;
-	private T[] elementos;
+	private Object[] elementos;
 
 	public VetorEstatico(int capacidade) {
 		if(0 > capacidade) {
@@ -68,14 +68,7 @@ public class VetorEstatico<T> {
 
 	@Override
 	public String toString() {
-		String str = "[ ";
-		for (int i = 0; i < this.capacidade - 1; i++) {
-			str += "(";
-			str += elementos[i];
-			str += ")";
-			str += " ";
-		}
-		return str + "]";
+		return Arrays.toString(elementos);
 	}
 
 	public int tamanho() {
