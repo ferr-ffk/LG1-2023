@@ -23,7 +23,7 @@ public class VetorEstatico<T> {
 	}
 
 	public boolean temCelulaVazia(int indice) {
-		return elementos[indice] == null ? true : false;
+		return elementos[indice] == null;
 	}
 
 	public void adicionar(T elemento) {
