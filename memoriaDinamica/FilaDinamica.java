@@ -62,7 +62,6 @@ public class FilaDinamica<T> {
 	 * @param elemento O elemento a ser adicionado
 	 * @param indice O indice do novo elemento
 	 */
-	@Deprecated
 	public void adicionar(T elemento, int indice) {
 		Celula<T> novaCelula = new Celula<>(elemento);
 		Celula<T> atual = this.primeiro;
