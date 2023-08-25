@@ -62,42 +62,80 @@ public class FilaDinamica<T> {
 	 * @param elemento O elemento a ser adicionado
 	 * @param indice O indice do novo elemento
 	 */
+	@Deprecated
 	public void adicionar(T elemento, int indice) {
 		Celula<T> novaCelula = new Celula<>(elemento);
 		Celula<T> atual = this.primeiro;
 		Celula<T> atualProximo = atual.proximo;
+		int indiceAtual = 0;
 
-		for (int i = 0; i < indice; i++) {
-			atual = atual.proximo;
-			atualProximo = atual.proximo;
+		System.out.println("Inserir " + elemento + " no indice " + indice);
+		
+		if(indice == 0) {
+			Celula<T> antigoAtual = atual;
+			
+			this.primeiro = novaCelula;
+			this.primeiro.proximo = antigoAtual;
+			
+			return;
 		}
-		atual.proximo = novaCelula;
-		novaCelula.proximo = atualProximo;
+		
+		while(atual.proximo != null) {
+			if(indiceAtual <= indice) {
+			
+				atual = atual.proximo;
+				atualProximo = atual.proximo;
+				
+				indiceAtual++;
+			} else {
+				break;
+			}
+		}
+		
+		if(atual.proximo == null) {
+			atual.proximo = novaCelula;
+		} else {
+			atual.proximo = novaCelula;
+			novaCelula.proximo = atualProximo;
+		}
+		
 	}
-	
-	@SuppressWarnings("unchecked")
+
+	/**
+	 * Remove e remove da fila o último elemento
+	 * 
+	 * @return O útimo elemento
+	 */
 	public T remover() {
-		Celula<T> elemento = this.primeiro;
+		Celula<T> ultimo = this.primeiro;
 		
-		while(elemento.proximo != null) {
-			elemento = elemento.proximo;
+		if(this.primeiro.proximo == null) {
+			throw new RuntimeException("A fila está vazia!");
 		}
 		
-		T ultimo = (T) elemento;
-		elemento = null;
+		while(ultimo.proximo.proximo != null) {
+			ultimo = ultimo.proximo;
+		}
 		
-		return ultimo;
+		T coisa = ultimo.proximo.coisa;
+		ultimo.proximo = null;
+		tamanho--;
+		
+		return coisa;
 	}
 
 	public T get(int indice) {
 		Celula<T> atual = this.primeiro;
 
-		for (int i = 0; i < tamanho; i++) {
+		while(atual.proximo != null) {
 			atual = atual.proximo;
 		}
 		return atual.coisa;
 	}
-
+	
+	/**
+	 * @return O tamanho da fila
+	 */
 	public int tamanho() {
 		return tamanho;
 	}
@@ -109,7 +147,7 @@ public class FilaDinamica<T> {
 		
 		sb.append("[ ");
 		
-		for(int i = 0; i < tamanho; i++) {
+		while(elemento != null) {
 			sb.append(elemento + " ");
 			elemento = elemento.proximo;
 		}
@@ -117,4 +155,5 @@ public class FilaDinamica<T> {
 		
 		return sb.toString();
 	}
+	
 }
