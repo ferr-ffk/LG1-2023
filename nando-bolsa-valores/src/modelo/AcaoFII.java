@@ -1,6 +1,6 @@
 package modelo;
 
-public class AcaoFII extends AbstratoPapel {
+public class AcaoFII extends AbstratoAcao {
 
 	private double cotas;
 
