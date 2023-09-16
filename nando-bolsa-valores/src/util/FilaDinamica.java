@@ -77,7 +77,6 @@ public class FilaDinamica<T> {
 		Celula<T> atualProximo = atual.proximo;
 		int indiceAtual = 0;
 
-		System.out.println("Inserir " + elemento + " no indice " + indice);
 
 		if (indice == 0) {
 			Celula<T> antigoAtual = atual;
